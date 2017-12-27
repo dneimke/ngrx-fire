@@ -9,10 +9,10 @@ import * as fromContainers from "../containers";
 export const ROUTES: Routes = [
   { path: "", pathMatch: "full", redirectTo: "home" },
   { path: "home", component: fromContainers.HomeComponent }
-  //   {
-  //     path: "app",
-  //     loadChildren: "../tagboards/tagboards.module#TagBoardsModule"
-  //   }
+  // {
+  //   path: "profile",
+  //   loadChildren: "../profile/profile.module#ProfileModule"
+  // }
 ];
 
 @NgModule({
