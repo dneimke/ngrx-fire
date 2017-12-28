@@ -3,10 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import * as fromUserStore from "../../../auth";
 import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
-
-interface AppState {
-  user: fromUserStore.User;
-}
+import { User } from "../../../auth/models/user.model";
 
 @Component({
   selector: "home",
@@ -30,12 +27,12 @@ interface AppState {
   styleUrls: []
 })
 export class HomeComponent implements OnInit {
-  user$: Observable<fromUserStore.User>;
+  user$: Observable<User>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<fromUserStore.UserState>) {}
 
   ngOnInit() {
-    this.user$ = this.store.select("user");
+    this.user$ = this.store.select(fromUserStore.getUser);
     this.store.dispatch(new fromUserStore.GetUser());
   }
 

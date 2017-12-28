@@ -11,7 +11,7 @@ import * as fromStore from "./store";
   imports: [
     AngularFireAuthModule,
     EffectsModule.forFeature([fromStore.UserEffects]),
-    StoreModule.forFeature("user", fromStore.userReducer)
+    StoreModule.forFeature("auth", fromStore.reducers)
   ],
   exports: [],
   declarations: [],

@@ -41,7 +41,7 @@ export class Logout implements Action {
   constructor(public payload?: any) {}
 }
 
-export type AllUserActions =
+export type UserActions =
   | GetUser
   | Authenticated
   | NotAuthenticated
