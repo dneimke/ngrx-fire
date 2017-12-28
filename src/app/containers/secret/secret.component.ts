@@ -6,40 +6,26 @@ import { Store } from "@ngrx/store";
 import { User } from "../../../auth/models/user.model";
 
 @Component({
-  selector: "home",
+  selector: "secret",
   template: `
     <h2>Home</h2>
     <div *ngIf="user$ | async as user">
-      <h1>Hi, {{ user.displayName }}</h1>
-      <h4>{{ user.uid }}</h4>
-      <button *ngIf="!user.uid" (click)="googleLogin()" 
-              [class.is-loading]="user.loading">
-        Sign In with Google
-      </button>
-  
-      <button *ngIf="user.uid" (click)="logout()">
-        Logout
-      </button>
+        <h1>Hi, {{ user.displayName }}</h1>
+        <p><strong>Secret message</strong>: {{ message }}</p>
+        
     </div>
-    <p><a routerLink="/secret">Navigate to secret</a></p>
+    <p><a routerLink="/home">Navigate to home</a></p>
   `,
   styleUrls: []
 })
-export class HomeComponent implements OnInit {
+export class SecretComponent implements OnInit {
   user$: Observable<User>;
+  message = "This is a secret message";
 
   constructor(private store: Store<fromUserStore.UserState>) {}
 
   ngOnInit() {
     this.user$ = this.store.select(fromUserStore.getUser);
     this.store.dispatch(new fromUserStore.GetUser());
-  }
-
-  googleLogin() {
-    this.store.dispatch(new fromUserStore.GoogleLogin());
-  }
-
-  logout() {
-    this.store.dispatch(new fromUserStore.Logout());
   }
 }

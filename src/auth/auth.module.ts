@@ -7,14 +7,17 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 
 import * as fromStore from "./store";
 
+// guards
+import * as fromGuards from "./guards";
+
 @NgModule({
   imports: [
     AngularFireAuthModule,
     EffectsModule.forFeature([fromStore.UserEffects]),
     StoreModule.forFeature("auth", fromStore.reducers)
   ],
-  exports: [],
-  declarations: [],
+  exports: [...fromGuards.guards],
+  declarations: [...fromGuards.guards],
   providers: [],
   bootstrap: []
 })

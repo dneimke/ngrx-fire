@@ -33,11 +33,11 @@ export class UserEffects {
     .switchMap(payload => this.afAuth.authState)
     .map(authData => {
       if (authData) {
-        /// User logged in
+        // User logged in
         const user = new User(authData.uid, authData.displayName);
         return new userActions.Authenticated(user);
       } else {
-        /// User not logged in
+        // User not logged in
         return new userActions.NotAuthenticated();
       }
     })

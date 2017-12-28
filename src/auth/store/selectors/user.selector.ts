@@ -6,10 +6,28 @@ import * as fromUser from "../reducers/user.reducer";
 
 export const getUserState = createSelector(
   fromFeature.getAuthState,
-  (state: fromFeature.AuthState) => state.user
+  (state: fromFeature.AuthState) => {
+    if (state) {
+      return state.user;
+    }
+  }
 );
 
 export const getUser = createSelector(
   getUserState,
-  (state: fromUser.UserState) => state.user
+  (state: fromUser.UserState) => {
+    if (state) {
+      return state.user;
+    }
+  }
+);
+
+export const getUserLoading = createSelector(
+  getUserState,
+  (state: fromUser.UserState) => state.loading
+);
+
+export const getUserLoaded = createSelector(
+  getUserState,
+  (state: fromUser.UserState) => state.loaded
 );
