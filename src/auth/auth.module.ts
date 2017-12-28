@@ -16,9 +16,9 @@ import * as fromGuards from "./guards";
     EffectsModule.forFeature([fromStore.UserEffects]),
     StoreModule.forFeature("auth", fromStore.reducers)
   ],
-  exports: [...fromGuards.guards],
-  declarations: [...fromGuards.guards],
-  providers: [],
+  exports: [],
+  declarations: [],
+  providers: [...fromGuards.guards],
   bootstrap: []
 })
 export class AuthModule {}

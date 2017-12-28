@@ -10,9 +10,6 @@ import * as fromUserStore from "../store";
 import { User } from "../models/user.model";
 
 @Injectable()
-@Directive({
-  selector: "auth-guard"
-})
 export class AuthGuard implements CanActivate {
   constructor(private store: Store<fromUserStore.AuthState>) {}
 
