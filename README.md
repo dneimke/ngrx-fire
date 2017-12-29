@@ -12,12 +12,4 @@ Run `npm start` to build and run the application.
 
 ## Development steps
 
-Use the Angular CLI to create a new application:
-
-    ng new ngrx-fire
-    cd ngrx-fire
-
-Install NGRX components
-
-    npm install --save @ngrx/core @ngrx/store @ngrx/effects @ngrx/router-store
-    npm install --save-dev @ngrx/store-devtools
+You will need to create a Firebase project and add the configuration to an environment config file. You can follow the steps at [this link](https://github.com/dneimke/coding-tool/wiki/Getting-Started).
