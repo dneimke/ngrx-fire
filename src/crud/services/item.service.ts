@@ -12,6 +12,7 @@ import { catchError } from "rxjs/operators";
 import "rxjs/add/observable/throw";
 
 import { Item } from "../models";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class ItemService {
@@ -41,11 +42,17 @@ export class ItemService {
       });
   }
 
-  add(name: string) {
-    const item = { name: name };
-    const promise = this.itemsCollection$.add(item);
+  add(name: string): Observable<Item> {
+    const subject = new Subject();
 
-    return Observable.fromPromise(promise).map(r => r.id);
+    const item = { name: name };
+    const promise = this.itemsCollection$.add(item).then(docRefPromise => {
+      subject.next({ id: docRefPromise.id, name: name });
+    });
+
+    // return Observable.fromPromise(promise).map(r => r.id);
+
+    return subject.asObservable();
   }
 
   delete(item: Item): Observable<Item> {

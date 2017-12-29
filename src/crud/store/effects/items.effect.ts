@@ -34,7 +34,7 @@ export class ItemsEffects {
       return this.itemService
         .add(item)
         .pipe(
-          map(item => new itemActions.CreateItemSuccess({ id: item })),
+          map(item => new itemActions.CreateItemSuccess(item)),
           catchError(error => of(new itemActions.CreateItemFail(error)))
         );
     })
