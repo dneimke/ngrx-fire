@@ -94,7 +94,7 @@ export class ItemsEffects {
   handleItemSuccess$ = this.actions$
     .ofType(itemActions.UPDATE_ITEM_SUCCESS, itemActions.REMOVE_ITEM_SUCCESS)
     .pipe(
-      map(pizza => {
+      map(item => {
         return new fromRoot.Go({
           path: ["/crud/rxjs"]
         });
