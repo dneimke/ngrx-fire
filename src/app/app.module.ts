@@ -10,16 +10,11 @@ import * as fromAuth from "../auth";
 export const ROUTES: Routes = [
   { path: "", pathMatch: "full", redirectTo: "home" },
   { path: "home", component: fromContainers.HomeComponent },
+  { path: "secret", component: fromContainers.SecretComponent },
   {
-    path: "secret",
-    component: fromContainers.SecretComponent
-    // canActivate: [fromAuth.AuthGuard]
-  },
-  { path: "rxjs", component: fromContainers.RxjsComponent }
-  // {
-  //   path: "profile",
-  //   loadChildren: "../profile/profile.module#ProfileModule"
-  // }
+    path: "crud",
+    loadChildren: "../crud/crud.module#CrudModule"
+  }
 ];
 
 @NgModule({

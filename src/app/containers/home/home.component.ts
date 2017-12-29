@@ -22,7 +22,7 @@ import { User } from "../../../auth/models/user.model";
       </button>
     </div>
     <p><a routerLink="/secret">Navigate to secret</a></p>
-    <p><a routerLink="/rxjs">Navigate to Observables</a></p>
+    <p><a routerLink="/crud/rxjs">Navigate to Observables</a></p>
   `,
   styleUrls: []
 })
