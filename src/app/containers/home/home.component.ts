@@ -22,6 +22,7 @@ import { User } from "../../../auth/models/user.model";
       </button>
     </div>
     <p><a routerLink="/secret">Navigate to secret</a></p>
+    <p><a routerLink="/rxjs">Navigate to Observables</a></p>
   `,
   styleUrls: []
 })
@@ -33,6 +34,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.user$ = this.store.select(fromUserStore.getUser);
     this.store.dispatch(new fromUserStore.GetUser());
+
+    // const arr: number[] = [1, 5];
+    // let result = arr.map(n => n + 1);
+    // console.log(result);
   }
 
   googleLogin() {
