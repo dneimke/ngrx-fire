@@ -15,28 +15,29 @@ import * as fromComponents from "./components";
 import * as fromServices from "./services";
 
 // guards
-// import * as fromGuards from "./guards";
+import * as fromGuards from "./guards";
 
 // store
-// import * as fromStore from "./store";
+import * as fromStore from "./store";
 
 export const ROUTES: Routes = [
   {
     path: "rxjs",
-    component: fromContainers.RxjsComponent
+    component: fromContainers.RxjsComponent,
+    canActivate: [fromGuards.ItemsGuard]
   }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(ROUTES)
-    // EffectsModule.forFeature([fromStore.UserEffects]),
-    // StoreModule.forFeature("auth", fromStore.reducers)
+    RouterModule.forChild(ROUTES),
+    EffectsModule.forFeature([fromStore.ItemsEffects]),
+    StoreModule.forFeature("collections", fromStore.reducers)
   ],
   exports: [],
   declarations: [...fromContainers.containers, ...fromComponents.components],
-  providers: [...fromServices.services],
+  providers: [...fromServices.services, ...fromGuards.guards],
   bootstrap: []
 })
 export class CrudModule {}
