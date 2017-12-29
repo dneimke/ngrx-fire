@@ -48,7 +48,7 @@ export class RxjsComponent implements OnInit {
     const updatedItem = { ...item, name };
 
     // this.itemService.update(updatedItem);
-    this.store.dispatch(new fromStore.UpdateItem(item));
+    this.store.dispatch(new fromStore.UpdateItem(updatedItem));
   }
 
   delete(item: Item) {

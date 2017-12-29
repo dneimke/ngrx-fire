@@ -45,34 +45,29 @@ export class ItemService {
   add(name: string): Observable<Item> {
     const subject = new Subject();
 
-    const item = { name: name };
-    const promise = this.itemsCollection$.add(item).then(docRefPromise => {
-      subject.next({ id: docRefPromise.id, name: name });
-    });
+    const item = { name };
 
-    // return Observable.fromPromise(promise).map(r => r.id);
+    const promise = this.itemsCollection$.add(item).then(docRefPromise => {
+      const newItem = { id: docRefPromise.id, name: name };
+      var docRef = this.afs.collection<Item>("items").doc(newItem.id);
+      docRef.set(newItem);
+      subject.next(newItem);
+    });
 
     return subject.asObservable();
   }
 
   delete(item: Item): Observable<Item> {
-    const id = item.id;
+    const subject = new Subject();
 
-    var docRef = this.afs.collection<Item>("items").doc(id);
+    var docRef = this.afs.collection<Item>("items").doc(item.id);
 
     docRef
       .delete()
-      .then(function() {
-        console.log("Document successfully deleted!");
-        return Observable.of<Item>({});
-      })
-      .catch(function(error) {
-        console.error("Error removing document: ", error);
-      });
+      .then(() => subject.next())
+      .catch(error => subject.error(error));
 
-    return docRef.snapshotChanges().map(doc => {
-      return doc.payload.data() as Item;
-    });
+    return subject.asObservable();
   }
 
   update(item: Item): Observable<Item> {
